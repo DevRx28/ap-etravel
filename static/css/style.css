@@ -1,0 +1,103 @@
+/* Custom Stylesheet */
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+.datepicker-date-display{
+  color:#fff;
+}
+
+#search-button{
+  width: 200px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1300px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+Number text (1/3 etc)
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+} */
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}

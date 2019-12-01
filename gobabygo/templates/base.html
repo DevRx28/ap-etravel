@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>GoBabyGo</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo white-text">GoBabyGo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a style="color:white" href="/">Home</a></li>
+        <li><a style="color:white" href="/flights">Flights</a></li>
+        <li><a style="color:white" href="/hotels">Hotels</a></li>
+        <!-- Dropdown Trigger -->
+
+        <a class='dropdown-trigger btn light-blue' href='#' data-target='dropdown1'>My Account</a>
+        {% if request.session.current_user %}        
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a style="color:black" href="/account">Settings</a></li>
+          <li><a style="color:black" href="/logout">Log Out</a></li>
+        </ul>
+        {% else %}
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a style="color:black" href="/login">Log In</a></li>
+          <li><a style="color:black" href="/signup">Sign Up</a></li>
+        </ul>
+        {% endif %}
+      </ul>
+      
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="/">gobabygo</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li><a href="/">Flights</a></li>
+        <li><a href="/hotels">Hotels</a></li>
+        <li class="divider" tabindex="-1"></li>
+        {% if request.session.current_user %}        
+        <li><a href="/account">Settings</a></li>
+        <li><a href="/logout">Log Out</a></li>
+        {% else %}
+        <li><a class="teal-text" href="/login">Log In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        {% endif %}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock content %}
+
+  <footer class="page-footer black">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s8">
+          <h5 class="white-text">Alt F4</h5>
+          <p class="grey-text text-lighten-4">We are a team of non-CS college students working hard to provide the best possible travel and hotel booking services to our users.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="green-text text-lighten-3" href="http://github.com/">Alt F4</a> using <a class="pink-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+  </body>
+
+    <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+  <script>
+    $('.dropdown-trigger').dropdown();
+
+    M.textareaAutoResize($('#textarea1'));
+      
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+       selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: true,
+        autoClose:true
+        });
+
+    $('input.autocomplete').autocomplete({
+      data: {
+        "New York City, USA": null,
+        "Los Angeles, USA": null,
+        "Boston, USA": null,
+        "Chicago, USA": null,
+        "Las Vegas, USA": null,
+        "Atlanta, USA": null,
+        "Beijing, CHINA": null,
+        "New Delhi, INDIA": null,
+        "London, UK": null
+      },
+    });
+  </script>
+</html>

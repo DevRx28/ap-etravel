@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <div id="index-banner">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <form action="" method="POST">
+          {% csrf_token %}
+        <div class="row center">
+          <h5 class="header col s12 light">Find your next flight</h5>
+        <div class="input-field col l6 s12">
+          <i class="material-icons prefix">flight_takeoff</i>
+          <input type="text" name="origin" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Origin</label>
+        </div>
+        <div class="input-field col l6 s12">
+          <i class="material-icons prefix">flight_land</i>
+          <input type="text" name="destination" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Destination</label>
+        </div>
+        <div class="input-field col l8 s12">
+          <i class="material-icons prefix">date_range</i>
+          <input type="text" name="startdate" class="datepicker">
+          <label for="input">Date</label>
+        </div>
+        <div class="input-field col l4 s12">
+          <i class="material-icons prefix">airline_seat_recline_extra</i>
+          <label></label>
+          <select name= "class" class="browser-default">
+            <option value="" disabled selected>Choose a class</option>
+            <option value="economy">Economy</option>
+            <option value="business">Business</option>
+            <option value="first">First</option>
+          </select>
+        </div>
+
+        </div>
+        <div class="row center">
+          <button class="btn waves-effect waves-light light-blue" style="width: 400px" type="submit">
+              <i class="large material-icons">search</i>
+            </button>
+        </div>
+        </form>
+
+        <br><br>
+
+      </div>
+    </div>
+  </div>
+  
+  {% if results %}
+    <div class="row center">
+      <div class="container">
+        {% for obj in some_list %}
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="card light-blue">
+            <div class="card-content white-text">
+              <span class="card-title">{{obj.carrierName}}</span>
+              <div class="row" style="font-size: 16px;">
+                <div class="col l4 m4 s4">
+                  <p>Origin: {{obj.origin}}</p>
+                  <p>Layover: {{obj.layover}}</p>
+                  <p>Destination: {{obj.destination}}</p>
+                </div>
+              <div class="col l4 m4 s4">
+              <p>Departure Date: {{obj.departureDate}}</p>
+              <p>Departure Time: {{obj.departureTime}}</p>
+              </div>
+              {% if class == "economy" %}
+              <div class="col l4 m4 s4">
+                <p>Class: economy</p>
+              <p>Fare: {{obj.fareEconomy}}</p>
+              <p>Seats Available: {{obj.remainingSeatsEconomy}}</p>
+              </div>
+              {% endif %}
+              {% if class == "business" %}
+              <div class="col l4 m4 s4">
+                <p>Class: business</p>
+              </div>
+              <div class="col l4 m4 s4">
+              <p>Fare: {{obj.fareBusiness}}</p>
+            </div>
+              <div class="col l4 m4 s4">
+              <p>Seats Available: {{obj.remainingSeatsBusiness}}</p>
+            </div>
+              {% endif %}
+              {% if class == "first" %}
+              <div class="col l4 m4 s4">
+                <p>Class: first</p>
+              </div>
+              <div class="col l4 m4 s4">
+              <p>Fare: {{obj.fareFirst}}</p>
+            </div>
+              <div class="col l4 m4 s4">
+              <p>Seats Available: {{obj.remainingSeatsFirst}}</p>
+            </div>
+              {% endif %}
+            </div>
+            </div>
+            {% if request.session.current_user %} 
+            <div class="card-action">
+              <a href="http://127.0.0.1:8000/book/?type=flight&class={{class}}&id={{obj.id}}">Book Now</a>
+            </div>
+            {% endif %}
+          </div>
+        </form>
+        {% endfor %}
+      </div>
+    </div>    
+  {% else %}
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h3 style="color:black" class="header col s12 dark">Your wings already exist. All you have to do is fly.</h3>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/flights.jpg' %}" alt="Unsplashed background img 2"></div>
+  </div>
+  
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Fast. Like Lightning.</h5>
+
+            <p class="light">We give you the best results, fast. So that you spend less time searching and more time doing what you love - travelling.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Trusted by Millions</h5>
+
+            <p class="light">Our services are used and recommended by millions of happy users worldwide. That's how we know we are the best in the industry.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">attach_money</i></h2>
+            <h5 class="center">Offers You Can't Refuse</h5>
+
+            <p class="light">We give you the best prices in the industry - because travelling should not be limited to just the rich.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+
+{% endblock content %}

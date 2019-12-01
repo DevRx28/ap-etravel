@@ -1,0 +1,8 @@
+virtualenv -p python3 env
+source env/bin/activate
+pip install django
+pip install social django
+pip install social-auth-app-django
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver

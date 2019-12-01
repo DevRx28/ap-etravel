@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="center">
+  <div id="index-banner"  class="center" style="height: 450px; margin-top: 50px;">
+      
+        <div class="center">
+          <div class="collection col l4 s4" >
+            <a href="http://127.0.0.1:8000/account/?setting=preferences" class="center collection-item black" style="color:white">Preferences</a>
+            <a href="http://127.0.0.1:8000/account/?setting=payment" class="center collection-item black" style="color:white">Payment Methods</a>
+            <a href="http://127.0.0.1:8000/account/?setting=history" class="center collection-item black" style="color:white">History</a>
+          </div>
+
+        {% if setting %}
+          {% ifequal setting "preferences" %}
+            <div class="col l9 s8">
+                <table class="stripped">
+                  <thead>
+                    <tr>
+                      <th><h5 class="header col s12 light">Preferences</h5></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Email Login</td>
+                      <td>{{request.session.current_user}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          {% endifequal %}
+          {% ifequal setting "payment" %}
+            <div class="col l9 s8">
+                <table class="stripped">
+                  <thead>
+                    <tr>
+                      <th><h5 class="header col s12 light">Payment</h5></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Credit</td>
+                      <td>xxxx-xxxx-xxxx-1234</td>
+                    </tr>
+                    <tr>
+                      <td>Debit</td>
+                      <td>xxxx-xxxx-xxxx-1234</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          {% endifequal %}
+          {% ifequal setting "history" %}
+            <div class="col l9 s8">
+                <table class="stripped">
+                  <thead>
+                    <tr>
+                      <th><h5 class="header col s12 light">History</h5></th>
+                      <th></th>
+                    </tr>
+                    <tr>
+                      <th>Type</th>
+                      <th>Company</th>
+                      <th>Destination</th>
+                      <th>Book Date</th>
+                      <th>Total</th>
+                      <th>Card Number</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in transactions %}
+                    <tr>
+                      <td>{{obj.bookingType}}</td>
+                      <td>{{obj.companyName}}</td>
+                      <td>{{obj.location}}</td>
+                      <td>{{obj.bookingDate}}</td>
+                      <td>${{obj.payment}}</td>
+                      <td>{{obj.paymentDetails}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+          {% endifequal %}
+        {% else %}
+          <div class="col l9 s8">
+                <table class="stripped">
+                  <thead>
+                    <tr>
+                      <th><h5 class="header col s12 light">Preferences</h5></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Email Login</td>
+                      <td>{{request.session.current_user}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        {% endif %}
+          
+        </div>
+  </div>
+</div>
+{% endblock content %}
