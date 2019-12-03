@@ -107,5 +107,5 @@ issues relating to running the program, you can get in touch with the developers
 adhiraj.srivastava_asp20@ashoka.edu.in, 
 daksh.baheti_asp20@ashoka.edu.in, 
 devvrat.raghav_asp20@ashoka.edu.in, 
-skzafar.ali_asp20@ashoka.edu.in
+skzafar.ali_asp20@ashoka.edu.in,
 shivam.sahu_asp20@ashoka.edu.in
