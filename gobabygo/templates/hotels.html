@@ -54,8 +54,8 @@
               <p>User Rating: {{obj.rating}}</p>
             </div>
             {% if request.session.current_user %} 
-            <div class="card-action">
-              <a href="http://127.0.0.1:8000/book/?type=hotel&id={{obj.id}}">Book Now</a>
+            <div class="card-action teal">
+              <a href="http://127.0.0.1:8000/book/?type=hotel&id={{obj.id}}" style="color:#FFFFFF">Book Now<a>
             </div>
             {% endif %}
           </div>

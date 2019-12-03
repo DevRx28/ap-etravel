@@ -7,7 +7,7 @@
   <div id="index-banner"  class="center" style="height: 450px; margin-top: 50px;">
       
         <div class="center">
-          <div class="collection col l4 s4" >
+          <div class="collection col l2 s2" >
             <a href="http://127.0.0.1:8000/account/?setting=preferences" class="center collection-item black" style="color:white">Preferences</a>
             <a href="http://127.0.0.1:8000/account/?setting=payment" class="center collection-item black" style="color:white">Payment Methods</a>
             <a href="http://127.0.0.1:8000/account/?setting=history" class="center collection-item black" style="color:white">History</a>
@@ -25,8 +25,20 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Email Login</td>
-                      <td>{{request.session.current_user}}</td>
+                      <tr>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Email ID</td>
+                        <td>Phone Number</td>
+                      </tr>
+                      {% for obj in userinfo %}
+                      <tr>
+                        <td>{{obj.firstName}}</td>
+                        <td>{{obj.lastName}}</td>
+                        <td>{{obj.email}}</td>
+                        <td>{{obj.userPhone}}</td>
+                      </tr>
+                      {% endfor %}                    
                     </tr>
                   </tbody>
                 </table>
